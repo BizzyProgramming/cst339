@@ -1,5 +1,5 @@
 <div style="text-align:center;">
-  <h1>Topic1-1: Installation, Validation, and Learning Maven</h1> 
+<h1>Topic1-1: Installation, Validation, and Learning Maven</h1> 
 <h1>Bruce Brown</h1> 
 <h1>Grand Canyon University CST-339<h1>
 <h1>Bobby Estey</h1>
@@ -26,4 +26,5 @@
 
 <p><b>Maven project running screen of index.html</b></p>
 <img width="975" height="337" alt="image" src="https://github.com/user-attachments/assets/3be4db6a-4d1f-4026-9241-4d170383e91e" />
+
 
