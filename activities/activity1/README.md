@@ -1,5 +1,5 @@
 
-<div text-align:"center;">### Topic1-1: Installation, Validation, and Learning Maven</div>
+### Topic1-1: Installation, Validation, and Learning Maven</div>
 ### Bruce Brown
 ### Grand Canyon University CST-339
 ### Bobby Estey
@@ -33,4 +33,5 @@
 
 <p><b>Maven project running screen of index.html</b></p>
 <img width="975" height="337" alt="image" src="https://github.com/user-attachments/assets/3be4db6a-4d1f-4026-9241-4d170383e91e" />
+
 
