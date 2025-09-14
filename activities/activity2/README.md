@@ -40,8 +40,6 @@
 
 ## Part 2
 
----
-
 <p><b>1. Login Form working properly</b></p>
 <img width="809" height="497" alt="Login Form" src="https://github.com/user-attachments/assets/ac4aa6eb-766f-4047-aa27-fbf79178cbe4" />
 
