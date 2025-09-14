@@ -1,5 +1,5 @@
 
-<div text-align:"center;">### Activity 2 – Spring MVC</div>
+<div text-align:"center;">Activity 2 – Spring MVC</div>
 Bruce Brown
 Grand Canyon University CST-339
 Professor Bobby Estey
