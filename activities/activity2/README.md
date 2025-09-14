@@ -1,4 +1,4 @@
-### Activity 2 – Spring MVC
+ Activity 2 – Spring MVC
 <div text-align:"center;">### Activity 2 – Spring MVC</div>
 ### Bruce Brown
 ### Grand Canyon University CST-339
