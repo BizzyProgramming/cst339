@@ -1,9 +1,9 @@
 
 # Activity 2 – Spring MVC
-## Bruce Brown
-## Grand Canyon University CST-339
-## Professor Bobby Estey
-## 9/14/2025
+### Bruce Brown
+### Grand Canyon University CST-339
+### Professor Bobby Estey
+### 9/14/2025
 
 ---
 
