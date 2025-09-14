@@ -9,7 +9,7 @@ Professor Bobby Estey
 
 ## Part 1
 
----
+
 
 <p><b>1. Screenshot after running project topic2-1 on localhost showcasing it works for Test 1</b></p>
 <img width="482" height="281" alt="Test 1 Screenshot" src="https://github.com/user-attachments/assets/c86a780f-d8c7-4254-9ca6-6153751f1468" />
