@@ -109,3 +109,22 @@ flowchart TD
     H -->|No| G
     I --> J[End]
 ```
+### Screenshots
+#### Terminal console window showing successful launch
+<img width="986" height="574" alt="image" src="https://github.com/user-attachments/assets/f420d17f-445a-4201-8865-5053c01f1e96" />
+
+#### Register page
+<img width="611" height="509" alt="Registers page" src="https://github.com/user-attachments/assets/27765df4-0a13-40ad-ad48-749d370d6e56" />
+
+#### Successful Login Screen shot
+<img width="513" height="317" alt="image" src="https://github.com/user-attachments/assets/6233e550-7f54-4bf3-a312-8a7c808b0b04" />
+
+#### Upon clicking bootstrap button to register & login
+<img width="781" height="626" alt="image" src="https://github.com/user-attachments/assets/a82bc302-eeb6-4ef2-82ec-5e82730214c6" />
+
+#### Unfinished Cards List Page
+<img width="780" height="548" alt="image" src="https://github.com/user-attachments/assets/5039b46b-8372-41c6-aea0-c5c138f21217" />
+
+#### Terminal showing login credentials form
+<img width="487" height="59" alt="image" src="https://github.com/user-attachments/assets/610fcb90-8255-4197-b8ec-1587244f7c52" />
+
