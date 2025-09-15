@@ -128,3 +128,5 @@ flowchart TD
 #### Terminal showing login credentials form
 <img width="487" height="59" alt="image" src="https://github.com/user-attachments/assets/610fcb90-8255-4197-b8ec-1587244f7c52" />
 
+#### Screen Cast Demonstration
+https://www.loom.com/share/519c087127354293a2696325c301cb2f
