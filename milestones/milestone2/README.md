@@ -60,7 +60,7 @@
 ---
 
 ### Risks
-- **Technical:** Thymeleaf template resolution errors (`registerSuccess.html`)  
+- **Technical:** Thymeleaf template resolution errors (`register-success.html`)  
 - **Functional:** User cannot yet login with stored database credentials  
 - **Design:** Need to maintain consistent layout as more pages are added  
 
@@ -69,6 +69,43 @@
 ### Install Instructions
 1. Clone project from GitHub: `https://github.com/BizzyProgramming/cst339/tree/main/milestones/milestone2`  
 2. Ensure **Java 17** is installed  
-3. Run the application:  
-   ```bash
-   mvn spring-boot:run
+3. Run the application: mvn spring-boot:run
+
+### ER Diagram - Milesone 2: User & Orders
+```mermaid
+
+erDiagram
+    USER {
+        string firstName
+        string lastName
+        string email
+        string username PK
+        string password
+    }
+
+    ORDER {
+        int orderId PK
+        string username FK
+        string orderDate
+        float total
+    }
+
+    USER ||--o{ ORDER : places
+```
+
+### Flowchart – Milestone 2: Login & Registration
+
+```mermaid
+flowchart TD
+    A[Start] --> B[Go to /register page]
+    B --> C[Fill Registration Form]
+    C --> D{Validation Successful?}
+    D -->|Yes| E[registerSuccess.html]
+    D -->|No| C
+    E --> F[Go to /login page]
+    F --> G[Fill Login Form]
+    G --> H{Authentication Successful?}
+    H -->|Yes| I[orders.html]
+    H -->|No| G
+    I --> J[End]
+```
