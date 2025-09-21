@@ -13,6 +13,16 @@ public class OrdersBusinessService implements OrdersBusinessInterface {
 	}
 	
 	@Override
+	public void init() {
+		System.out.println("Init method called in OrderBusinessService");
+	}
+	
+	@Override
+	public void destroy() {
+		System.out.println("Destroy method called in OrdersBusinessService");
+	}
+	
+	@Override
 	public List<OrderModel> getOrders() {
 		
 		List<OrderModel> orders = new ArrayList<OrderModel>();

@@ -1,6 +1,5 @@
 package com.gcu.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,7 @@ public class LoginController {
 	public String doLogin(@Valid LoginModel loginModel, BindingResult bindingResult, Model model) {
 	//	System.out.println(String.format("Form with Username of %s and Password of %s", loginModel.getUsername(), loginModel.getPassword()));
 		
-		 ordersBusinessService.test();
+		// ordersBusinessService.test();
 		
 		
 		if (bindingResult.hasErrors()) {

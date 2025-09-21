@@ -9,5 +9,9 @@ public interface OrdersBusinessInterface {
 	public void test();
 	
 	public List<OrderModel> getOrders();
+	
+	public void init();
+	
+	public void destroy();
 
 }
