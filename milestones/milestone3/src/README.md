@@ -78,6 +78,11 @@
 
 ---
 
+#### Preview/Screen cast of my Spring Boot web application
+https://www.loom.com/share/a8b8cb74446344c5bd37fc6fd98af0cb
+
+---
+
 - ### ER Diagram
 
 ```mermaid
