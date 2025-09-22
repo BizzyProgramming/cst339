@@ -64,6 +64,20 @@
 - **Functional:** User cannot yet login with stored database credentials  
 - **Design:** Maintaining consistent layout as more pages/modules are added
 
+ ---
+
+ ### Screenshots
+ #### Login Page
+ <img width="786" height="758" alt="image" src="https://github.com/user-attachments/assets/77dd0359-107b-48a8-bbe1-cfd69ddaa274" />
+
+ #### Registration Page/ Create account
+ <img width="736" height="926" alt="image" src="https://github.com/user-attachments/assets/08b5a7a9-40d3-4ae7-aaa7-be291e074ebb" />
+
+#### Once you register using account and password, back to login page and then can login to shop page
+<img width="730" height="896" alt="image" src="https://github.com/user-attachments/assets/09f3e569-7bcc-4987-925b-1a517d72693c" />
+
+---
+
 - ### ER Diagram
 
 ```mermaid
