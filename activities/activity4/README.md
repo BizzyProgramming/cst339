@@ -8,7 +8,7 @@
 
 ## Part 1: Creating Data Services Using Spring JDBC
 
-<p><b>1. Orders Page displayed in browser using JDBC DAO service<</b></p> 
+<p><b>1. Orders Page displayed in browser using JDBC DAO service</b></p> 
 <img width="622" height="406" alt="image" src="https://github.com/user-attachments/assets/55daa145-8685-49f1-ae6b-e172d01141f9" />
 
 
