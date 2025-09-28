@@ -1,4 +1,3 @@
-
 # Activity 4
 ### Bruce Brown
 ### Grand Canyon University CST-339
@@ -9,8 +8,9 @@
 
 ## Part 1: Creating Data Services Using Spring JDBC
 
-<p><b>1. Orders Page displayed in browser using JDBC DAO service<</b></p> 
-<img width="836" height="774" alt="image" src="https://github.com/user-attachments/assets/f9e8c31d-5c9d-4c20-8002-95d3d4ab7e34" />
+<p><b>1. Orders Page displayed in browser using JDBC DAO service</b></p> 
+<img width="622" height="406" alt="image" src="https://github.com/user-attachments/assets/55daa145-8685-49f1-ae6b-e172d01141f9" />
+
 
 ---
 
