@@ -1,8 +1,8 @@
-# CST-339 Project Design Report – Milestone 3
+# CST-339 Project Design Report – Milestone 4
 
-| Project Design | 9/22/2025 |
+| Project Design | 9/28/2025 |
 |----------------|-----------|
-| 3 – Registration & Product Creation Modules | 9/22/2025 | 1.0 |
+| 4 – JDBC Refactoring & Database Integration | 9/29/2025 | 4.0 |
 
 ### Team
 - Individual Project – Bruce Brown
@@ -12,74 +12,97 @@
 ### Weekly Status Summary
 | User Story | Team Member | Hours Worked | Hours Remaining | Git URL | 
 |------------|------------|--------------|----------------|---------|
-| Milestone 3: Registration & Product Creation using Spring Beans / IoC | Bruce Brown | 12 | N/A | https://github.com/BizzyProgramming/cst339.git |
+| Milestone 4: Refactor Login, Registration, and Product Creation modules to use Spring JDBC / DAO with persistence | Bruce Brown | 12 | N/A | https://github.com/BizzyProgramming/cst339.git |
 
 ---
 
 ### Planning & Implementation
-- Refactored **Registration and Login Modules** to use **Spring Beans and IoC**.  
-- Implemented **Product Creation / Shop Module** (via orders page).  
-- Updated Thymeleaf layouts:
-  - `defaultTemplate.html` for consistent header/footer  
-  - `registration.html`, `login.html`, `orders.html`  
-- Forms validated with **Jakarta Bean Validation (`@Valid`)**.  
-- Backend controllers now **handle form submissions using beans**.  
-- Tested all pages locally using `mvn spring-boot:run`.  
+- Refactored **Login Module** to authenticate users against **MySQL database**.  
+- Refactored **Registration Module** to insert new users into the users table (username, password, email, created_at).  
+- Refactored **Product/Shop Module** to pull products from the products table via **DAO pattern**.  
+- Implemented **DAO classes** using JdbcTemplate (UserDAO, ProductDAO).  
+- Added **Order Numbers** to the Orders page.  
+- Packaged application with **Maven JAR** and successfully ran outside IDE using:
+- bash
+- mvn clean package
+- java -jar target/topic3-2-0.0.1-SNAPSHOT.jar
+- Updated Thymeleaf layouts for consistent theme and styles across login, registration, and shop
 
 ---
 
 ### Technical Approach
-- **Backend:** Spring Boot MVC using IoC / Spring Beans
-  - `RegistrationController`, `LoginController`, `OrdersBusinessService`  
-  - Beans configured via `SpringConfig.java`
-- **Frontend:** Thymeleaf templates
-  - `login.html`, `registration.html`, `orders.html`  
-  - Layout fragments for `header` and `footer`
-- **Validation:** Jakarta Bean Validation for form inputs
-- **Persistence:** No database yet; form submissions print to console for testing
+**Backend:** Spring Boot MVC with Spring JDBC & DAO  
+- **Controllers:** LoginController, RegistrationController, OrdersController 
+- **DAOs:** UserDAOImpl, ProductDAOImpl  
+
+**Frontend:** Thymeleaf templates with common layout (defaultTemplate.html)  
+- login.html, registration.html, orders.html  
+
+**Validation:** Jakarta Bean Validation for form inputs  
+
+**Persistence:** MySQL database with Spring JDBC  
+- users table for accounts  
+- products table for shop items  
+- orders table mapped to products/users  
+
+**Build & Deploy:** Maven build → packaged JAR → run from terminal 
 
 ---
 
 ### Key Technical Decisions
 | Technology/Framework | Purpose | Reason for Choice |
-|--------------------|---------|----------------|
-| Spring Boot | Application framework | Simplifies MVC setup, integrates with Thymeleaf |
-| Spring Beans / IoC | Dependency management | Decouples controller logic from service implementation |
-| Thymeleaf | Template engine | Server-side rendering for forms & layouts |
-| Bootstrap | Responsive design | Quickly style forms & layout |
-| Maven | Build and dependency management | Standard Java project management |
-| Jakarta Validation | Form input validation | Ensures user inputs are correct before processing |
+|----------------------|---------|-----------------|
+| Spring Boot | MVC framework | Simplifies web app setup and integration |
+| Spring JDBC + DAO | Database access | Lightweight, clean persistence layer with JdbcTemplate |
+| Thymeleaf | Templates | Dynamic rendering with layouts and fragments |
+| Bootstrap | Styling | Responsive and professional UI |
+| MySQL | Database | Standard relational DB for persistence |
+| Maven | Build tool | Dependency management & JAR packaging |
 
 ---
 
 ### Known Issues
-- Local-only testing; app is not deployed externally  
-- No database persistence yet (form data only prints to console)  
-- UI layout may need tweaks for smaller screens  
+- No shopping cart feature yet (only product listing with order numbers).  
+- No role-based access control (all users see shop).  
+- Basic error handling; needs improvement for invalid login/registration.  
+- Login currently redirects straight to the shop page; ideally, users should go to a landing/dashboard page first.
 
 ---
 
 ### Risks
-- **Technical:** Bean initialization issues if additional modules added  
-- **Functional:** User cannot yet login with stored database credentials  
-- **Design:** Maintaining consistent layout as more pages/modules are added
+- **Technical:** Database connection issues if MySQL not configured properly.  
+- **Security:** Passwords currently lack strength requirements (min length, uppercase, special chars); passwords are stored in plaintext rather than hashed.  
+- **Functional:** No admin panel for adding/removing products (must insert directly into DB).  
+- **Design:** Shop page currently only lists items; future milestones may need cart or checkout system.  
+- **User Flow:** Logging in redirects straight to shop page; should implement a dashboard/landing page for better UX and access control.
 
  ---
 
  ### Screenshots
  #### Login Page
- <img width="786" height="758" alt="image" src="https://github.com/user-attachments/assets/77dd0359-107b-48a8-bbe1-cfd69ddaa274" />
+ <img width="734" height="776" alt="image" src="https://github.com/user-attachments/assets/dbdb056b-354f-4578-966d-ea545a76c7a4" />
+Description:
+Login page authenticates users against the users table in MySQL using Spring JDBC (UserDAOImpl). Form input is validated with Jakarta Bean Validation (@Valid).
 
  #### Registration Page/ Create account
- <img width="736" height="926" alt="image" src="https://github.com/user-attachments/assets/08b5a7a9-40d3-4ae7-aaa7-be291e074ebb" />
+ <img width="717" height="820" alt="image" src="https://github.com/user-attachments/assets/9eff16e2-1293-4beb-92ec-362d5c27f874" />
+Description: 
+Registration module inserts new users into the MySQL users table. The module is refactored to use Spring JDBC with DAO pattern, and input validation ensures proper data entry.
 
 #### Once you register using account and password, back to login page and then can login to shop page
-<img width="730" height="896" alt="image" src="https://github.com/user-attachments/assets/09f3e569-7bcc-4987-925b-1a517d72693c" />
+<img width="718" height="912" alt="image" src="https://github.com/user-attachments/assets/681c04c8-cf1e-41fc-a4dc-c97207058c84" />
+Description: 
+Product/Shop module retrieves product data from the products table via ProductDAOImpl. Each product displays its order number, name, price, and quantity, demonstrating database-driven content.
+
+### MySQL Database - Users Table
+<img width="711" height="610" alt="image" src="https://github.com/user-attachments/assets/6b3c9a3f-0ff4-4b8d-b1ee-80203cfbe18e" />
+Description:
+Confirms that new users are persisted in the users table. Demonstrates that the registration module correctly inserts data via Spring JDBC.
 
 ---
 
 #### Preview/Screen cast of my Spring Boot web application
-https://www.loom.com/share/a8b8cb74446344c5bd37fc6fd98af0cb
+https://www.loom.com/share/741fc4e78c2c4ec68f15818335351d2c
 
 ---
 
@@ -90,17 +113,20 @@ erDiagram
     USER {
         string username PK
         string password
-    }
-
-    ORDER {
-        int orderId PK
-        string username FK
-        string orderDate
-        float total
+        string email
+        datetime created_at
     }
 
     PRODUCT {
-        int productId PK
+        int id PK
+        string productName
+        float price
+        int quantity
+    }
+
+    ORDER {
+        int id PK
+        string orderNo
         string productName
         float price
         int quantity
@@ -108,3 +134,17 @@ erDiagram
 
     USER ||--o{ ORDER : places
     ORDER ||--o{ PRODUCT : contains
+```
+
+### Flow Chart
+
+```mermaid
+flowchart TD
+    A["Open Webpage"] --> B["Login Page"]
+    B -->|User exists| C["Orders/Shop Page"]
+    B -->|User not registered| D["Registration Page"]
+    D --> E["Insert user into MySQL via UserDAO"]
+    E --> B
+    C --> F["Retrieve products from MySQL via ProductDAO"]
+    F --> C
+```
