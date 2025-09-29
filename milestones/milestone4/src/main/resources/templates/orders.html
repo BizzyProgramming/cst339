@@ -71,7 +71,7 @@
                     <td colspan="4" class="no-orders">No Orders Available</td>
                 </tr>
                 <tr th:each="order : ${orders}">
-                    <td th:text="${order.orderNo}">0000000001</td>
+                    <td th:text="${order.id}">1</td>
                     <td th:text="${order.productName}">Magic Plate Armor</td>
                     <td th:text="${order.price}">4.99</td>
                     <td th:text="${order.quantity}">50</td>

@@ -40,7 +40,6 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean userExists(String username) {
-        // TODO: implement a SELECT query if you want
         return false;
     }
 
