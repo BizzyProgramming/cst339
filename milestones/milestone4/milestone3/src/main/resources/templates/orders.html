@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layouts/defaultTemplate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bizzy's Global OT - Shop</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    <style>
+        /* Table Styling */
+        .orders-table {
+            width: 60%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: rgba(34, 34, 34, 0.9); /* dark semi-opaque background */
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .orders-table thead th {
+            color: #fff; /* White text */
+            font-size: 20px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            text-align: center;
+            background-color: #222; /* dark header */
+            padding: 12px;
+        }
+
+        .orders-table tbody td {
+            color: #eee; /* Light text */
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 10px;
+            border-bottom: 1px solid #444; /* subtle row separation */
+        }
+
+        .orders-table tbody tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05); /* subtle stripe */
+        }
+
+        .orders-table tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.1); /* hover effect */
+        }
+
+        .no-orders {
+            color: #fff;
+            font-size: 18px;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div layout:fragment="content">
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>Order Number</th>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Coins</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${orders.empty}">
+                    <td colspan="4" class="no-orders">No Orders Available</td>
+                </tr>
+                <tr th:each="order : ${orders}">
+                    <td th:text="${order.id}">1</td>
+                    <td th:text="${order.productName}">Magic Plate Armor</td>
+                    <td th:text="${order.price}">4.99</td>
+                    <td th:text="${order.quantity}">50</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
