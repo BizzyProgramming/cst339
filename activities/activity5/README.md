@@ -37,8 +37,22 @@
 #### 2. JSON response with Invalid ID
 
 <p><b>This screenshot shows the JSON response when querying /service/getorder/{specificId} with an invalid or non existent order ID. Since the ID does not exist in the MongoDB database and the endpoint does not currently handle missing orders gracefully, the application returns a 500 Internal Server Error. This demonstrates that the service correctly attempts to retrieve data, but additional error handling could be added to return a more user friendly response such as a 404 Not Found or empty result.</b></p>
+
 <img src="src/main/resources/static/images/image4.png" alt="Browser using JSON to get Invalid ID" />
 
 #### 3. Invalid ID in PostMan SS
 
 <img src="src/main/resources/static/images/image5.png" alt="PostMan using JSON retrieving Invalid ID" />
+
+#### 4. Research Questions and Conclusion
+
+<p><b>1. </b>Compare and contrast the design of schema in a relational database and a non-relational database. How do they differ and what impacts does migrating from a relational database to a non-relational database have on your application design?</p>
+
+<p>In non-relational databases (NoSQL), a schema structured can be structured in a few various ways such as column style, graphs, document, and/or as a key-value store (GeeksForGeeks, 2024). As for relational databases (RDBMS), the schemas structures are predefined in order to decide how it will move forward with the data (GeeksForGeeks, 2024). The schema will lay out the blueprint on how it will organize the data. The language in SQL databases is extremely powerful. It is said to be one of the most versatile, most used worldwide, and safest choices when it comes to working with complex queries. That said, some structures SQL offers include documents, graphs, columns, and key-value pairs.  
+If a programmer wants to migrate from a NoSQL database to a SQL database or vice versa, there will be many impacts to consider. To start, the code in the program will have to be changed to intertwine or any connections that will be needed. Not to mention the data itself will be changed to work with the new schema. Lastly, it can potentially take up a ton of time which could be a waste of resources and/or money for the company. Unless a migration of the two databases is needed to be merged, such as for scalability considerations, and the program needs to be expanded, perhaps this would be a cause to consider (GeeksForGeeks, 2023). 
+
+ Reference: 
+GeeksForGeeks. (2024). Difference between SQL and NoSQL. https://www.geeksforgeeks.org/difference-between-sql-and-nosql/  </p>
+
+<p><b>2.</b> Compare and contrast the features of a relational database and a nonrelational database. Provide three advantages and rationale for why you would select a relational database. Provide three advantages and rationale for why you would select a nonrelational database.</p>
+<p>Relational and nonrelational databases take fundamentally different approaches to storing and retrieving data. Relational databases use fixed, tabular schemas with rows, columns, and foreign keys, strong ACID transactions, and SQL for powerful joins and analytics; they offer proven reliability, mature tooling, and precise consistency—qualities you rely on when correctness matters, like in banking or inventory systems. Nonrelational databases, by contrast, favor flexible or schema-less models (documents, key-value, wide-column, graph) that adapt quickly to changing data, scale horizontally across many servers, and deliver high throughput for large, distributed applications; they trade some transactional strictness for performance and agility and often shine when the data is heterogeneous or access patterns are simple and predictable. Choose relational when you need guaranteed consistency, rich querying, and robust administrative support; choose nonrelational when you need rapid schema evolution, massive scale, or a data model tailored to a specific domain. In short, one promises steady, dependable order like a well-run ledger, while the other offers restless, scalable freedom to grow and change with your application.</p>
