@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/defaultTemplate}">
+	<head>
+		<meta charset="UTF-8">
+		<title th:text="${title}">My Home</title>
+	</head>
+	<body>
+		<div layout:fragment="content">
+		<h1>Welcome to My Home</h1>
+		<p>Welcome! Back to login if you press link below:</p>
+		<a href="/login">Back to Login</a>
+		<a href="/orders/display">Go to Orders</a>
+		</div>
+	</body>
+	
+</html>
