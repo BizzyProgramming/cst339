@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-# cst339
-cst339
-=======
-
 # Activity 6 - Securing a Web Application and REST API's
 ### Bruce Brown
 ### Grand Canyon University CST-339
