@@ -1,0 +1,20 @@
+package com.gcu;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+
+@SpringBootApplication
+@ComponentScan("com.gcu")
+public class Topic62Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Topic62Application.class, args);
+		
+		String plainTextPassword = "Thekillers7!";
+		SecurityConfig sc = new SecurityConfig();
+		sc.encryptPasswordDiplay(plainTextPassword);
+//		SecurityConfig.encryptPasswordDiplay("ya password");
+	}
+
+}

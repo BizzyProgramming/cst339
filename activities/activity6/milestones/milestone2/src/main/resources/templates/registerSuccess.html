@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registration Successful</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Registration Successful!</h2>
+    <p th:text="${message}">Welcome! Your account has been created.</p>
+    <a href="/login/" class="btn btn-primary">Go to Login</a>
+</div>
+</body>
+</html>
