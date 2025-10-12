@@ -84,4 +84,3 @@ Basic HTTP authentication is a method where the username and password are sent f
 
 **Reference:**  
 Microsoft. (2023). Understanding HTTP Authentication. Microsoft Docs. https://learn.microsoft.com/en-us/dotnet/framework/wcf/feature-details/understanding-http-authentication
->>>>>>> 22db70e (Initial commit - CST 339 Activity 6)
