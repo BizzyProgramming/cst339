@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gcu.model.RegistrationModel;
 import com.gcu.dao.UserDAO;
+import com.gcu.business.SecurityBusinessService;
+
 import jakarta.validation.Valid;
 
 @Controller
@@ -16,6 +18,9 @@ public class RegistrationController {
 
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private SecurityBusinessService securityBusinessService;
 
     @GetMapping("/register")
     public String displayRegistration(Model model) {

@@ -1,41 +1,63 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xlmns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-	<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Bizzy's Global OT!</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-	<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.0/css/responsive.dataTables.css">
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="//cdn.datatables.net/responsive/2.2.0/js/dataTables.responsive.js"></script>
-	<link rel="stylesheet" th:href="@{/css/style.css}" />
-	<style type="text/css">
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bizzy's Global OT!</title>
 
-	.bs-example { 
-		margin: 20px; 
-	}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 
-	body {
-		background-color: aliceblue;
-	}
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.0/css/responsive.dataTables.css">
 
-	</style>
-	</head>
-	
-	<body>
-		<div th:style="'position:fixed; top:0; left:0; right:0; bottom:0; background:url(' + @{/images/tibiaOt.jpg} + ') no-repeat center center; background-size:cover; opacity:0.75; z-index:-1;'"></div>
-	<div align="center">
-		<div th:replace="~{layouts/common :: header}">My Header</div>
-		
-		<section layout:fragment="content">
-			<p>My Body Contents</p>
-		</section>
-		<div th:replace="~{layouts/common :: footer}">My Foooter</div>
-	</div>
-		
-	</body>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+    <!-- jQuery & Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/responsive/2.2.0/js/dataTables.responsive.js"></script>
+
+    <style>
+        .bs-example { 
+            margin: 20px; 
+        }
+
+        body {
+            background-color: aliceblue;
+        }
+
+        /* Optional: add padding to avoid header overlap */
+        body > div { 
+            padding-top: 100px; 
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background Image -->
+    <div th:style="'position:fixed; top:0; left:0; right:0; bottom:0; background:url(' + @{/images/tibiaOt.jpg} + ') no-repeat center center; background-size:cover; opacity:0.75; z-index:-1;'"></div>
+
+    <div align="center">
+        <!-- Header Fragment -->
+        <div th:replace="~{layouts/common :: header}"></div>
+
+        <!-- Main Content -->
+        <section layout:fragment="content">
+            <p>My Body Contents</p>
+        </section>
+
+        <!-- Footer Fragment -->
+        <div th:replace="~{layouts/common :: footer}"></div>
+    </div>
+
+</body>
 </html>
