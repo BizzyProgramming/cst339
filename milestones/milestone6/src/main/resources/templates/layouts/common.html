@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <body>
+    <div th:fragment="header">
+      <div align="center">
+        <h1>Welcome to Bizzy's Global OT Server!</h1>
+      </div>
+
+      <div class="bs-example">
+        <nav class="navbar navbar-default navbar-custom">
+          <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" 
+                    data-toggle="collapse" class="navbar-toggle">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a href="#" class="navbar-brand">Bizzy's OT</a>
+          </div>
+
+          <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a th:href="@{/home}">Home</a></li>
+              <li><a th:href="@{/orders}">Shop</a></li>
+              <li><a th:href="@{/news}">News and Events</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a th:href="@{/login/}">Login</a></li>
+              <li><a th:href="@{/register}">Create Account</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <h2 th:text="${title}">Login</h2><br/>
+      <img th:src="@{/images/MockOTLogo.jpg}" alt="Bizzy's OT Logo"
+           style="max-width: 300px; height: auto; margin: 20px auto; display: block;">
+      <br/><br/>
+    </div>
+
+    <div th:fragment="footer">
+      <h5 style="color:rgb(0, 81, 128); text-align: center; 
+                 position: fixed; bottom: 0; width: 100%;">
+        Copyright 2025 Bizzy's Global OT Server
+      </h5>
+    </div>
+  </body>
+</html>

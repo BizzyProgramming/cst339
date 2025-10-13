@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+      layout:decorate="~{layouts/defaultTemplate}">
+<body>
+    <div layout:fragment="content">
+        <h2 th:text="${title}" style="color: rgb(232,232,236); font-family: Arial, sans-serif; text-align:center;">Create Account</h2>
+        
+        <div style="width: 400px; margin: 20px auto; padding: 20px; background-color: rgba(0,0,0,0.75); border-radius: 10px;">
+            <form th:action="@{/register/doRegister}" th:object="${registrationModel}" method="post">
+                <table style="margin:auto;">
+                    <tr>
+                        <td><span style="color: rgb(232,232,236); font-family: Arial, sans-serif; font-weight: bold; font-size: 16px;">Username:</span></td>
+                        <td><input type="text" th:field="*{username}" style="padding:5px; font-size:16px;"></td>
+                        <td><h5 style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></h5></td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: rgb(232,232,236); font-family: Arial, sans-serif; font-weight: bold; font-size: 16px;">Password:</span></td>
+                        <td><input type="password" th:field="*{password}" style="padding:5px; font-size:16px;"></td>
+                        <td><h5 style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></h5></td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: rgb(232,232,236); font-family: Arial, sans-serif; font-weight: bold; font-size: 16px;">Email:</span></td>
+                        <td><input type="text" th:field="*{email}" style="padding:5px; font-size:16px;"></td>
+                        <td><h5 style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></h5></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align:center; padding-top:15px;">
+                            <input type="submit" value="Register" style="padding:8px 20px; font-size:16px; font-weight:bold; background-color:#005180; color:#fff; border:none; border-radius:5px; cursor:pointer;">
+                        </td>
+                    </tr>
+                </table>
+                
+                <div th:if="${#fields.hasErrors('*')}" style="color:red; text-align:center; margin-top:10px;">Please fix the errors above.</div>
+            </form>
+
+            <p style="text-align:center; margin-top:15px; color: #fff;">
+                Already have an account? <a th:href="@{/login/}" style="color:#fff; text-decoration:underline;">Login here</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

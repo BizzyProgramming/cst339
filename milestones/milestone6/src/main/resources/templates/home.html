@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layouts/defaultTemplate">
+<body>
+    <div layout:fragment="content">
+        <div style="text-align:center; margin-top:50px;">
+            <h2 th:text="${title}" style="color: rgb(232,232,236); font-family: Arial, sans-serif;">Welcome to Bizzy's Global OT!</h2>
+            <p style="color: #eee; font-size: 18px; margin-top:20px;">
+                Explore our shop, create an account, or log in to view your orders.
+            </p>
+            <div style="margin-top:30px;">
+                <a th:href="@{/login/}" class="btn btn-primary" style="margin:5px;">Login</a>
+                <a th:href="@{/register}" class="btn btn-success" style="margin:5px;">Create Account</a>
+                <a th:href="@{/login/doLogin}" class="btn btn-warning" style="margin:5px;">Shop Orders</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
