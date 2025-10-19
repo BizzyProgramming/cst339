@@ -1,8 +1,8 @@
-# CST-339 Project Design Report – Milestone 4
+# CST-339 Project Design Report – Milestone 6
 
-| Project Design | 9/28/2025 |
-|----------------|-----------|
-| 4 – JDBC Refactoring & Database Integration | 9/29/2025 | 4.0 |
+| Project Design | 10/13/2025 |
+|----------------|------------|
+| 6 – Spring Security Integration & Final MVC Refactor | 10/13/2025 | 4.0 |
 
 ### Team
 - Individual Project – Bruce Brown
@@ -11,98 +11,120 @@
 
 ### Weekly Status Summary
 | User Story | Team Member | Hours Worked | Hours Remaining | Git URL | 
-|------------|------------|--------------|----------------|---------|
-| Milestone 4: Refactor Login, Registration, and Product Creation modules to use Spring JDBC / DAO with persistence | Bruce Brown | 12 | N/A | https://github.com/BizzyProgramming/cst339.git |
+|-------------|--------------|---------------|----------------|---------|
+| Milestone 6: Integrate Spring Security for authentication and authorization; add password encryption and protected routes | Bruce Brown | 15 | N/A | https://github.com/BizzyProgramming/cst339.git |
 
 ---
 
 ### Planning & Implementation
-- Refactored **Login Module** to authenticate users against **MySQL database**.  
-- Refactored **Registration Module** to insert new users into the users table (username, password, email, created_at).  
-- Refactored **Product/Shop Module** to pull products from the products table via **DAO pattern**.  
-- Implemented **DAO classes** using JdbcTemplate (UserDAO, ProductDAO).  
-- Added **Order Numbers** to the Orders page.  
-- Packaged application with **Maven JAR** and successfully ran outside IDE using:
-- bash
-- mvn clean package
-- java -jar target/topic3-2-0.0.1-SNAPSHOT.jar
-- Updated Thymeleaf layouts for consistent theme and styles across login, registration, and shop
+- Integrated **Spring Security** to manage authentication and access control.  
+- Created a **custom `UserDetailsService`** (`SecurityBusinessService`) to load users from MySQL.  
+- Implemented **BCrypt password hashing** for secure credential storage.  
+- Built a **custom login page** and **registration flow** using Thymeleaf templates.  
+- Restricted `/orders` route so only authenticated users can view the shop page.  
+- Added **logout functionality** that returns users to the home page.  
+- Refactored project architecture into clear MVC layers (controller, business, dao, model).  
+- Enhanced **UI consistency** with layout fragments (`defaultTemplate.html`) and Bootstrap.  
+- Tested the full registration → login → shop → logout cycle with session management.  
 
 ---
 
 ### Technical Approach
-**Backend:** Spring Boot MVC with Spring JDBC & DAO  
-- **Controllers:** LoginController, RegistrationController, OrdersController 
-- **DAOs:** UserDAOImpl, ProductDAOImpl  
+**Backend:** Spring Boot MVC with Spring Security + JDBC/DAO  
+- **Controllers:** LoginPageController, RegistrationController, OrdersController  
+- **Business:** SecurityBusinessService, OrdersBusinessService  
+- **DAO:** UserDAOImpl, ProductDAOImpl  
+- **Configuration:** WebSecurityConfig (defines authentication providers, filter chain, and password encoder)  
 
-**Frontend:** Thymeleaf templates with common layout (defaultTemplate.html)  
-- login.html, registration.html, orders.html  
+**Frontend:** Thymeleaf templates with layout fragments and Bootstrap styling  
+- login.html, registration.html, orders.html, layouts/defaultTemplate.html  
 
-**Validation:** Jakarta Bean Validation for form inputs  
+**Validation:** Jakarta Bean Validation annotations (@NotNull, @Size)  
 
 **Persistence:** MySQL database with Spring JDBC  
-- users table for accounts  
-- products table for shop items  
-- orders table mapped to products/users  
+- users table for credentials (username, password, email, created_at)  
+- products table for shop inventory  
 
-**Build & Deploy:** Maven build → packaged JAR → run from terminal 
+**Security Flow:**  
+- Registration encrypts password with BCrypt before storing in MySQL.  
+- Spring Security authenticates via `AuthenticationManager` using the stored hash.  
+- Successful login redirects to `/orders`; unauthenticated users redirected to `/login`.  
+
+**Build & Deploy:** Maven build → packaged JAR → run from terminal  
 
 ---
 
 ### Key Technical Decisions
 | Technology/Framework | Purpose | Reason for Choice |
-|----------------------|---------|-----------------|
-| Spring Boot | MVC framework | Simplifies web app setup and integration |
-| Spring JDBC + DAO | Database access | Lightweight, clean persistence layer with JdbcTemplate |
-| Thymeleaf | Templates | Dynamic rendering with layouts and fragments |
-| Bootstrap | Styling | Responsive and professional UI |
-| MySQL | Database | Standard relational DB for persistence |
-| Maven | Build tool | Dependency management & JAR packaging |
+|----------------------|----------|------------------|
+| Spring Security | Authentication & Authorization | Provides secure login and access control |
+| BCryptPasswordEncoder | Password encryption | Industry-standard password hashing |
+| Spring Boot MVC | Application Framework | Simplifies web development with dependency injection |
+| JdbcTemplate + DAO Pattern | Data Access | Clean, modular database operations |
+| Thymeleaf + Bootstrap | UI Templates | Dynamic, responsive front-end |
+| MySQL | Database | Relational data persistence |
+| Maven | Build Tool | Dependency management and packaging |
 
 ---
 
 ### Known Issues
-- No shopping cart feature yet (only product listing with order numbers).  
-- No role-based access control (all users see shop).  
-- Basic error handling; needs improvement for invalid login/registration.  
-- Login currently redirects straight to the shop page; ideally, users should go to a landing/dashboard page first.
+- No role-based user access (e.g., Admin vs User).  
+- No password strength policy validation.  
+- Basic login/registration error messages; future improvement needed.  
+- Admin interface for managing products not yet implemented.  
+- Limited unit tests for security and DAO components.  
 
 ---
 
 ### Risks
-- **Technical:** Database connection issues if MySQL not configured properly.  
-- **Security:** Passwords currently lack strength requirements (min length, uppercase, special chars); passwords are stored in plaintext rather than hashed.  
-- **Functional:** No admin panel for adding/removing products (must insert directly into DB).  
-- **Design:** Shop page currently only lists items; future milestones may need cart or checkout system.  
-- **User Flow:** Logging in redirects straight to shop page; should implement a dashboard/landing page for better UX and access control.
+- **Database:** Failure if MySQL service unavailable or credentials incorrect.  
+- **Security:** No brute-force protection or password complexity checks yet.  
+- **Design:** Future role management will require additional config updates.  
+- **UX:** Login redirects directly to shop; dashboard could improve navigation.  
 
- ---
+---
 
- ### Screenshots
- #### Login Page
- <img width="734" height="776" alt="image" src="https://github.com/user-attachments/assets/dbdb056b-354f-4578-966d-ea545a76c7a4" />
-Description:
-Login page authenticates users against the users table in MySQL using Spring JDBC (UserDAOImpl). Form input is validated with Jakarta Bean Validation (@Valid).
+### Screenshots
 
- #### Registration Page/ Create account
- <img width="717" height="820" alt="image" src="https://github.com/user-attachments/assets/9eff16e2-1293-4beb-92ec-362d5c27f874" />
+#### Home Page
+![Home Page Screenshot](/milestones/milestone5/src/main/resources/static/images/image2.png)
 Description: 
-Registration module inserts new users into the MySQL users table. The module is refactored to use Spring JDBC with DAO pattern, and input validation ensures proper data entry.
+The new **Home Page** serves as the application’s landing screen.  
+It provides navigation links to **Login**, **Create Account**, and **Shop (Orders)**.  
+Unauthenticated users are redirected here after logout, and the layout maintains a consistent Bootstrap theme with navigation bar and hero section.
 
-#### Once you register using account and password, back to login page and then can login to shop page
-<img width="718" height="912" alt="image" src="https://github.com/user-attachments/assets/681c04c8-cf1e-41fc-a4dc-c97207058c84" />
-Description: 
-Product/Shop module retrieves product data from the products table via ProductDAOImpl. Each product displays its order number, name, price, and quantity, demonstrating database-driven content.
+#### News & Events Page
+![NewsEvents Page](/milestones/milestone5/src/main/resources/static/images/image3.png)
 
-### MySQL Database - Users Table
-<img width="711" height="610" alt="image" src="https://github.com/user-attachments/assets/6b3c9a3f-0ff4-4b8d-b1ee-80203cfbe18e" />
 Description:
-Confirms that new users are persisted in the users table. Demonstrates that the registration module correctly inserts data via Spring JDBC.
+The new **News & Events Page** showcases announcements, upcoming updates, or promotions.  
+It uses the same Thymeleaf layout for consistent navigation and appearance.  
+This page is **publicly accessible** and helps make the application feel more dynamic and realistic.
+
+#### Login Page
+<img width="734" alt="image" src="https://github.com/user-attachments/assets/dbdb056b-354f-4578-966d-ea545a76c7a4" />  
+Description:  
+Custom login form integrated with Spring Security. Valid credentials route users to `/orders`, invalid ones show an error.
+
+#### Registration Page
+<img width="717" alt="image" src="https://github.com/user-attachments/assets/9eff16e2-1293-4beb-92ec-362d5c27f874" />  
+Description:
+Creates new users and stores their credentials in MySQL using BCrypt encryption.
+
+#### Orders / Shop Page
+<img width="718" alt="image" src="https://github.com/user-attachments/assets/681c04c8-cf1e-41fc-a4dc-c97207058c84" />  
+Description:  
+Displays shop products from the `products` table. Only visible to logged-in users.
+
+#### MySQL Users Table
+![MySQL Tables](/milestones/milestone5/src/main/resources/static/images/image.png)
+**Description:**  
+Shows stored BCrypt password hashes, proving encryption works correctly.
 
 ---
 
 #### Preview/Screen cast of my Spring Boot web application
-https://www.loom.com/share/741fc4e78c2c4ec68f15818335351d2c
+https://www.loom.com/share/dd00d50b4eff40fb8f0a355ea608392b
 
 ---
 
@@ -124,27 +146,19 @@ erDiagram
         int quantity
     }
 
-    ORDER {
-        int id PK
-        string orderNo
-        string productName
-        float price
-        int quantity
-    }
-
-    USER ||--o{ ORDER : places
-    ORDER ||--o{ PRODUCT : contains
+    USER ||--o{ PRODUCT : purchases
 ```
 
 ### Flow Chart
 
 ```mermaid
 flowchart TD
-    A["Open Webpage"] --> B["Login Page"]
-    B -->|User exists| C["Orders/Shop Page"]
-    B -->|User not registered| D["Registration Page"]
-    D --> E["Insert user into MySQL via UserDAO"]
+      A["Open Home Page"] --> B["Login Page"]
+    B -->|Valid Login| C["Orders / Shop Page"]
+    B -->|No Account| D["Registration Page"]
+    D --> E["Insert User (BCrypt Password) via UserDAO"]
     E --> B
-    C --> F["Retrieve products from MySQL via ProductDAO"]
+    C --> F["Retrieve Products via ProductDAOImpl"]
     F --> C
+    C --> G["Logout -> Redirect to Home"]
 ```
