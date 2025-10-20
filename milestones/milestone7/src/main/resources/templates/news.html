@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layouts/defaultTemplate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bizzy's Global OT - News & Events</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        body {
+            color: #eee;
+            font-family: Arial, sans-serif;
+        }
+
+        .news-container {
+            width: 70%;
+            margin: 20px auto;
+            background-color: rgba(34, 34, 34, 0.85); /* darker semi-transparent background */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .news-container h2 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .news-item {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #555;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-item h4 {
+            color: #fff;
+        }
+
+        .news-item p {
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="news-container">
+            <h2 th:text="${title}">News & Events</h2>
+            
+            <div class="news-item">
+                <h4>Server Update - October 2025</h4>
+                <p>The server will undergo maintenance on October 20th. Expect downtime of 2 hours.</p>
+            </div>
+
+            <div class="news-item">
+                <h4>New Items in Shop!</h4>
+                <p>Magic Plate Armor and new rare weapons are now available in the shop.</p>
+            </div>
+
+            <div class="news-item">
+                <h4>Community Event</h4>
+                <p>Join the Halloween event on October 31st for exclusive rewards and challenges!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
