@@ -12,7 +12,7 @@
 ### Weekly Status Summary
 | User Story | Team Member | Hours Worked | Hours Remaining | Git URL | 
 |-------------|--------------|---------------|----------------|---------|
-| Milestone 7: Build and secure REST APIs using microservices architecture; add JSON and XML endpoints for products | Bruce Brown | 15 | N/A | https://github.com/BizzyProgramming/cst339.git |
+| Milestone 7: Build and secure REST APIs using microservices architecture; add JSON and XML endpoints for products | Bruce Brown | 15 | N/A | [https://github.com/BizzyProgramming/cst339.git](https://github.com/BizzyProgramming/cst339/tree/main/milestones/milestone7) |
 
 ---
 
