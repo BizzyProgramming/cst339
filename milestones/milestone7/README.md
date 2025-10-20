@@ -38,15 +38,15 @@
 - **DAO:** ProductDAOImpl, UserDAOImpl  
 - **Configuration:** WebSecurityConfig (defines authentication providers, Basic HTTP Auth, and filter chain)  
 
-**Frontend:** Thymeleaf templates integrated with Bootstrap and reusable layouts (`defaultTemplate.html`, `common.html`).  
+**Frontend:** Thymeleaf templates integrated with Bootstrap and reusable layouts (defaultTemplate.html, common.html).  
 
-**Persistence:** MySQL database accessed through Spring JDBC with `JdbcTemplate`.  
+**Persistence:** MySQL database accessed through Spring JDBC with JdbcTemplate.  
 - **Tables:**  
-  - `users` → For authentication (username, password, email, created_at).  
-  - `products` → For REST API display (id, productName, price, quantity).  
+  - users → For authentication (username, password, email, created_at).  
+  - products → For REST API display (id, productName, price, quantity).  
 
 **Testing & Verification:**  
-- Tested JSON and XML output for `/service/products` and `/service/product/1`.  
+- Tested JSON and XML output for /service/products and /service/product/1.  
 - Verified HTTP Basic Authentication with valid and invalid credentials.  
 - Confirmed consumer UI displays product data retrieved via REST APIs.
 
@@ -82,26 +82,26 @@
 
 ### Screenshots
 
-#### 1. User Microservice – JSON Output
-<img width="600" alt="Users JSON" src="https://github.com/user-attachments/assets/b0ab774a-bfe8-40c7-bea0-49cc861e0de7" />  
-**Description:**  
-Displays all user data in JSON format through the `/service/users` endpoint, confirming microservice connectivity and REST response structure.
+#### 1. Product REST API – All Products (JSON Output)
+<img width="682" height="746" alt="image" src="https://github.com/user-attachments/assets/0f2fdd6a-feab-4138-9f78-54bc9945ef98" />
+ **Description:** Displays all product records returned by the `/service/products` endpoint in JSON format. Tested successfully using Postman after authentication, confirming that the REST API correctly retrieves all products from the MySQL database.
 
-#### 2. Orders Microservice – JSON Output
-<img width="600" alt="Orders JSON" src="https://github.com/user-attachments/assets/a993f9dc-f39e-456f-ac26-db20bc5a83bd" />  
-**Description:**  
-Lists all orders returned by the `/service/orders` endpoint in JSON format. Tested successfully in both Postman and browser.
+#### 2. Product REST API – Single Product by ID
+<img width="674" height="467" alt="image" src="https://github.com/user-attachments/assets/2ae942b1-004b-497a-8b94-b44dcbb98bc0" />
+**Description:** Retrieves a single product record by ID using the `/service/product/1` endpoint. This demonstrates dynamic route parameter handling and proves the REST controller correctly interacts with the business and DAO layers.
 
-#### 3. Product Service – XML Output
-<img width="600" alt="Products XML" src="https://github.com/user-attachments/assets/46cddebd-69cd-4653-84dd-39893d4e0411" />  
-**Description:**  
-Returns products in XML format using `/service/getxml`, proving the service supports multi-format data serialization.
+#### 3. Product REST API – All Products (Browser Output)
+<img width="510" height="235" alt="image" src="https://github.com/user-attachments/assets/f64c99f3-ccc8-48ba-8918-ef5418448d52" />
+**Description:** Displays all product records directly in the **browser** by visiting `/service/products`. This confirms that the endpoint returns valid JSON output when authenticated, demonstrating the REST API functions independently from the front-end consumer.
 
-#### 4. Home, Orders, and Users Pages
-<img width="600" alt="Home Page" src="https://github.com/user-attachments/assets/93b07e90-6a9a-4775-ab23-38711cd7417e" />  
-<img width="600" alt="Users Page" src="https://github.com/user-attachments/assets/8af6989a-68ed-4d15-bcb1-3d8fb266c6db" />  
-**Description:**  
-These pages consume the microservice APIs using `RestTemplate`, demonstrating the integration of separate, independent services.
+#### 4. Consumer Web Application Integration (Home, Orders, and Users Pages)
+<img width="685" height="805" alt="image" src="https://github.com/user-attachments/assets/b073e4e6-454f-4790-b1ea-73a68fc5f282" />
+<img width="656" height="804" alt="image" src="https://github.com/user-attachments/assets/835c2a21-15fc-4b92-900d-b560399823e6" />
+<img width="664" height="800" alt="image" src="https://github.com/user-attachments/assets/19fbec42-a158-4b85-96c8-50b57511fe5a" />
+**Description:** These web pages use `RestTemplate` calls to consume the `/service/products` and `/service/product/{id}` endpoints, integrating the REST microservices into the MVC application. This demonstrates **multi-layered architecture** where services operate independently yet communicate seamlessly.
+
+#### 5. Testing JSON before logging in
+<img width="707" height="490" alt="image" src="https://github.com/user-attachments/assets/db88fc5c-5568-4328-b183-bbcef3398ef4" />
 
 ---
 
