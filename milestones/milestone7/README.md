@@ -158,9 +158,10 @@ erDiagram
     }
 
     USER ||--o{ PRODUCT : purchases
-
 ```
+### Flow Chart
 
+```mermaid
 flowchart TD
     A["Login via /login"] --> B["Spring Security validates MySQL credentials"]
     B -->|Success| C["Access /service/products (JSON)"]
@@ -168,3 +169,4 @@ flowchart TD
     C --> E["Optional /service/product/{id} (XML)"]
     E --> F["REST Consumer App Displays Data"]
     F --> G["Logout -> Redirect to Home"]
+```
