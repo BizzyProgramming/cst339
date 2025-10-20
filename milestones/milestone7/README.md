@@ -1,8 +1,8 @@
-# CST-339 Project Design Report – Milestone 6
+# CST-339 Project Design Report – Milestone 7
 
-| Project Design | 10/13/2025 |
+| Project Design | 10/19/2025 |
 |----------------|------------|
-| 6 – Spring Security Integration & Final MVC Refactor | 10/13/2025 | 4.0 |
+| 7 – Microservices and REST API Implementation | 10/19/2025 | 4.0 |
 
 ### Team
 - Individual Project – Bruce Brown
@@ -12,123 +12,134 @@
 ### Weekly Status Summary
 | User Story | Team Member | Hours Worked | Hours Remaining | Git URL | 
 |-------------|--------------|---------------|----------------|---------|
-| Milestone 6: Integrate Spring Security for authentication and authorization; add password encryption and protected routes | Bruce Brown | 15 | N/A | https://github.com/BizzyProgramming/cst339.git |
+| Milestone 7: Build and secure REST APIs using microservices architecture; add JSON and XML endpoints for products | Bruce Brown | 15 | N/A | https://github.com/BizzyProgramming/cst339.git |
 
 ---
 
 ### Planning & Implementation
-- Integrated **Spring Security** to manage authentication and access control.  
-- Created a **custom `UserDetailsService`** (`SecurityBusinessService`) to load users from MySQL.  
-- Implemented **BCrypt password hashing** for secure credential storage.  
-- Built a **custom login page** and **registration flow** using Thymeleaf templates.  
-- Restricted `/orders` route so only authenticated users can view the shop page.  
-- Added **logout functionality** that returns users to the home page.  
-- Refactored project architecture into clear MVC layers (controller, business, dao, model).  
-- Enhanced **UI consistency** with layout fragments (`defaultTemplate.html`) and Bootstrap.  
-- Tested the full registration → login → shop → logout cycle with session management.  
+- Developed two **REST APIs**:  
+  - `/service/products` → Returns all products.  
+  - `/service/product/{id}` → Returns a single product by ID.  
+- Implemented **microservice structure** separating API endpoints from the consumer web UI.  
+- Integrated **Spring Security Basic HTTP Authentication** to secure API endpoints using credentials from MySQL.  
+- Used **BCrypt hashing** for all stored passwords in the database.  
+- Updated `OrdersRestService` to return **JSON** and **XML** formatted data.  
+- Verified functionality in both **browser** and **Postman**.  
+- Refactored the application to meet **RESTful standards**, using `@RestController` and `@GetMapping`.  
+- Enhanced database connection for `ProductDAO` and refactored queries to map product attributes properly.  
+- Ensured all services (Consumer App, Product Service, and Security) run independently.  
 
 ---
 
 ### Technical Approach
-**Backend:** Spring Boot MVC with Spring Security + JDBC/DAO  
-- **Controllers:** LoginPageController, RegistrationController, OrdersController  
-- **Business:** SecurityBusinessService, OrdersBusinessService  
-- **DAO:** UserDAOImpl, ProductDAOImpl  
-- **Configuration:** WebSecurityConfig (defines authentication providers, filter chain, and password encoder)  
+**Backend:** Spring Boot MVC with RESTful microservices, Spring Security + JDBC/DAO  
+- **Controllers:** HomeController, LoginPageController, RegistrationController, OrdersController  
+- **Business:** ProductBusinessService, SecurityBusinessService, OrdersRestService  
+- **DAO:** ProductDAOImpl, UserDAOImpl  
+- **Configuration:** WebSecurityConfig (defines authentication providers, Basic HTTP Auth, and filter chain)  
 
-**Frontend:** Thymeleaf templates with layout fragments and Bootstrap styling  
-- login.html, registration.html, orders.html, layouts/defaultTemplate.html  
+**Frontend:** Thymeleaf templates integrated with Bootstrap and reusable layouts (`defaultTemplate.html`, `common.html`).  
 
-**Validation:** Jakarta Bean Validation annotations (@NotNull, @Size)  
+**Persistence:** MySQL database accessed through Spring JDBC with `JdbcTemplate`.  
+- **Tables:**  
+  - `users` → For authentication (username, password, email, created_at).  
+  - `products` → For REST API display (id, productName, price, quantity).  
 
-**Persistence:** MySQL database with Spring JDBC  
-- users table for credentials (username, password, email, created_at)  
-- products table for shop inventory  
-
-**Security Flow:**  
-- Registration encrypts password with BCrypt before storing in MySQL.  
-- Spring Security authenticates via `AuthenticationManager` using the stored hash.  
-- Successful login redirects to `/orders`; unauthenticated users redirected to `/login`.  
-
-**Build & Deploy:** Maven build → packaged JAR → run from terminal  
+**Testing & Verification:**  
+- Tested JSON and XML output for `/service/products` and `/service/product/1`.  
+- Verified HTTP Basic Authentication with valid and invalid credentials.  
+- Confirmed consumer UI displays product data retrieved via REST APIs.
 
 ---
 
 ### Key Technical Decisions
 | Technology/Framework | Purpose | Reason for Choice |
 |----------------------|----------|------------------|
-| Spring Security | Authentication & Authorization | Provides secure login and access control |
+| Spring Boot | Backend Framework | Simplifies dependency management and configuration |
+| Spring Security | Authentication & Authorization | Enforces API protection and secure login |
 | BCryptPasswordEncoder | Password encryption | Industry-standard password hashing |
-| Spring Boot MVC | Application Framework | Simplifies web development with dependency injection |
-| JdbcTemplate + DAO Pattern | Data Access | Clean, modular database operations |
-| Thymeleaf + Bootstrap | UI Templates | Dynamic, responsive front-end |
-| MySQL | Database | Relational data persistence |
-| Maven | Build Tool | Dependency management and packaging |
+| REST API / JSON / XML | Data communication format | Enables interoperable, flexible service communication |
+| MySQL | Database | Reliable, structured data persistence |
+| Maven | Build Tool | Handles dependencies and project packaging |
 
 ---
 
 ### Known Issues
-- No role-based user access (e.g., Admin vs User).  
-- No password strength policy validation.  
-- Basic login/registration error messages; future improvement needed.  
-- Admin interface for managing products not yet implemented.  
-- Limited unit tests for security and DAO components.  
+- Role-based security (Admin vs User) not yet implemented.  
+- No global exception handler for REST API error responses.  
+- Microservices run locally, not yet containerized via Docker.  
+- Unit tests for REST endpoints pending for future milestone.  
 
 ---
 
 ### Risks
-- **Database:** Failure if MySQL service unavailable or credentials incorrect.  
-- **Security:** No brute-force protection or password complexity checks yet.  
-- **Design:** Future role management will require additional config updates.  
-- **UX:** Login redirects directly to shop; dashboard could improve navigation.  
+- **Database Connection:** Failure if MySQL credentials or port changes.  
+- **Security:** APIs rely on HTTP Basic Auth; OAuth2 could improve scalability.  
+- **Service Dependencies:** Consumer app depends on the API service availability.  
+- **Deployment:** Future integration with Eureka or Kubernetes could add complexity.  
 
 ---
 
 ### Screenshots
 
-#### Home Page
-![Home Page Screenshot](/milestones/milestone5/src/main/resources/static/images/image2.png)
-Description: 
-The new **Home Page** serves as the application’s landing screen.  
-It provides navigation links to **Login**, **Create Account**, and **Shop (Orders)**.  
-Unauthenticated users are redirected here after logout, and the layout maintains a consistent Bootstrap theme with navigation bar and hero section.
-
-#### News & Events Page
-![NewsEvents Page](/milestones/milestone5/src/main/resources/static/images/image3.png)
-
-Description:
-The new **News & Events Page** showcases announcements, upcoming updates, or promotions.  
-It uses the same Thymeleaf layout for consistent navigation and appearance.  
-This page is **publicly accessible** and helps make the application feel more dynamic and realistic.
-
-#### Login Page
-<img width="734" alt="image" src="https://github.com/user-attachments/assets/dbdb056b-354f-4578-966d-ea545a76c7a4" />  
-Description:  
-Custom login form integrated with Spring Security. Valid credentials route users to `/orders`, invalid ones show an error.
-
-#### Registration Page
-<img width="717" alt="image" src="https://github.com/user-attachments/assets/9eff16e2-1293-4beb-92ec-362d5c27f874" />  
-Description:
-Creates new users and stores their credentials in MySQL using BCrypt encryption.
-
-#### Orders / Shop Page
-<img width="718" alt="image" src="https://github.com/user-attachments/assets/681c04c8-cf1e-41fc-a4dc-c97207058c84" />  
-Description:  
-Displays shop products from the `products` table. Only visible to logged-in users.
-
-#### MySQL Users Table
-![MySQL Tables](/milestones/milestone5/src/main/resources/static/images/image.png)
+#### 1. User Microservice – JSON Output
+<img width="600" alt="Users JSON" src="https://github.com/user-attachments/assets/b0ab774a-bfe8-40c7-bea0-49cc861e0de7" />  
 **Description:**  
-Shows stored BCrypt password hashes, proving encryption works correctly.
+Displays all user data in JSON format through the `/service/users` endpoint, confirming microservice connectivity and REST response structure.
+
+#### 2. Orders Microservice – JSON Output
+<img width="600" alt="Orders JSON" src="https://github.com/user-attachments/assets/a993f9dc-f39e-456f-ac26-db20bc5a83bd" />  
+**Description:**  
+Lists all orders returned by the `/service/orders` endpoint in JSON format. Tested successfully in both Postman and browser.
+
+#### 3. Product Service – XML Output
+<img width="600" alt="Products XML" src="https://github.com/user-attachments/assets/46cddebd-69cd-4653-84dd-39893d4e0411" />  
+**Description:**  
+Returns products in XML format using `/service/getxml`, proving the service supports multi-format data serialization.
+
+#### 4. Home, Orders, and Users Pages
+<img width="600" alt="Home Page" src="https://github.com/user-attachments/assets/93b07e90-6a9a-4775-ab23-38711cd7417e" />  
+<img width="600" alt="Users Page" src="https://github.com/user-attachments/assets/8af6989a-68ed-4d15-bcb1-3d8fb266c6db" />  
+**Description:**  
+These pages consume the microservice APIs using `RestTemplate`, demonstrating the integration of separate, independent services.
 
 ---
 
-#### Preview/Screen cast of my Spring Boot web application
-https://www.loom.com/share/dd00d50b4eff40fb8f0a355ea608392b
+### Research Questions
+
+#### 1. Describe what microservices are. How does this architecture style differ from traditional monolithic architectures?
+Microservices are an architectural style that breaks a large application into smaller, independent services, each responsible for a specific task (e.g., authentication, billing, or content delivery).  
+Each service runs in its own process, has its own database, and communicates via REST APIs.  
+This design allows developers to deploy, maintain, and scale each service independently.  
+In contrast, monolithic architectures combine all components—UI, logic, and database—into a single unit, making updates slower and scaling less flexible.  
+
+**References:**  
+- GeeksForGeeks. (2025). [What are Microservices?](https://www.geeksforgeeks.org/system-design/microservices/)  
+- Netflix Tech Blog. (2024). [Rebuilding Netflix Video Processing Pipeline with Microservices.](https://netflixtechblog.com/rebuilding-netflix-video-processing-pipeline-with-microservices-4e5e6310e359)
 
 ---
 
-- ### ER Diagram
+#### 2. What are 5 challenges you might encounter when modifying a monolithic architecture to a microservice architecture style?
+1. **Service Communication:** Managing API calls and ensuring reliability between independent services.  
+2. **Data Management:** Maintaining data consistency across multiple service databases.  
+3. **Deployment Complexity:** Coordinating the deployment and scaling of multiple microservices.  
+4. **Security:** Managing authentication and authorization across services.  
+5. **Increased Infrastructure Complexity:** Requires service discovery, orchestration, and monitoring tools.  
+
+**Reference:**  
+- AWS. (2025). [Building Microservices on AWS.](https://aws.amazon.com/microservices/)  
+
+---
+
+### Conclusion
+This milestone demonstrated how to design and secure REST APIs within a microservice architecture using Spring Boot.  
+By separating services (User, Orders, and Product), I achieved improved modularity, scalability, and maintainability.  
+Securing endpoints with Basic HTTP Authentication strengthened the application’s reliability, and testing JSON/XML outputs showcased interoperability across systems.  
+Milestone 7 provided valuable insight into the foundation of distributed systems and modern enterprise-class applications.
+
+---
+
+### ER Diagram
 
 ```mermaid
 erDiagram
@@ -147,18 +158,13 @@ erDiagram
     }
 
     USER ||--o{ PRODUCT : purchases
+
 ```
 
-### Flow Chart
-
-```mermaid
 flowchart TD
-      A["Open Home Page"] --> B["Login Page"]
-    B -->|Valid Login| C["Orders / Shop Page"]
-    B -->|No Account| D["Registration Page"]
-    D --> E["Insert User (BCrypt Password) via UserDAO"]
-    E --> B
-    C --> F["Retrieve Products via ProductDAOImpl"]
-    F --> C
-    C --> G["Logout -> Redirect to Home"]
-```
+    A["Login via /login"] --> B["Spring Security validates MySQL credentials"]
+    B -->|Success| C["Access /service/products (JSON)"]
+    B -->|Fail| D["Redirect to Login Page"]
+    C --> E["Optional /service/product/{id} (XML)"]
+    E --> F["REST Consumer App Displays Data"]
+    F --> G["Logout -> Redirect to Home"]
