@@ -1,0 +1,23 @@
+<!--
+  File: success.html
+  Author: Bruce Brown
+  Description: Confirmation page shown after a successful checkout.
+  Controller: OrdersController.java
+  Mapped URL: /orders/success
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layouts/defaultTemplate">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Order Successful</title>
+</head>
+<body>
+<div layout:fragment="content" style="text-align:center; color:#eee; margin-top:40px;">
+    <h2>✅ Purchase Complete</h2>
+    <p>Thanks! Your order has been placed successfully.</p>
+    <a th:href="@{/shop}" class="btn btn-primary" style="margin-top:10px;">Back to Shop</a>
+</div>
+</body>
+</html>

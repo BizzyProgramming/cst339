@@ -1,0 +1,25 @@
+<!--
+  File: alreadyLoggedIn.html
+  Author: Bruce Brown
+  Description: Displays a message when a logged-in user tries to access the login page again.
+  Controller: LoginPageController.java
+  Mapped URL: /alreadyLoggedIn
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layouts/defaultTemplate">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Already Logged In</title>
+</head>
+<body>
+<div layout:fragment="content" style="text-align:center; margin-top:60px;">
+    <h2 th:text="${message}" style="color:#fff;">You are already logged in.</h2>
+    <p style="margin-top:20px;">
+        <a th:href="@{/news}" class="btn btn-primary">Go to Home</a>
+        <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+    </p>
+</div>
+</body>
+</html>

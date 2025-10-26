@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--
+  File: orders.html
+  Author: Bruce Brown
+  Description: Displays the user's current shopping cart and total cost summary.
+  Controller: OrdersController.java
+  Mapped URL: /orders
+-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layouts/defaultTemplate">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Your Cart</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <style>
+        .orders-table {
+            width: 70%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: rgba(34,34,34,0.9);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .orders-table th { color:#fff; background:#222; text-align:center; padding:12px; font-size:18px; }
+        .orders-table td { color:#eee; text-align:center; padding:10px; font-size:16px; }
+        .orders-table tr:nth-child(even){ background-color: rgba(255,255,255,0.05); }
+
+        .totals {
+            color:#fff; text-align:center; margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <table class="orders-table">
+        <thead>
+        <tr>
+            <th>Item</th>
+            <th>Unit Price ($)</th>
+            <th>Coins / Unit</th>
+            <th>Qty</th>
+            <th>Line Coins</th>
+            <th>Line Price ($)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${#lists.isEmpty(cart)}">
+            <td colspan="6" class="no-orders">Your cart is empty</td>
+        </tr>
+        <tr th:each="ci : ${cart}">
+            <td th:text="${ci.productName}">Magic Plate Armor</td>
+            <td th:text="${ci.unitPrice}">4.99</td>
+            <td th:text="${ci.coinsPerUnit}">50</td>
+            <td th:text="${ci.quantity}">1</td>
+            <td th:text="${ci.lineCoins}">50</td>
+            <td th:text="${#numbers.formatDecimal(ci.linePrice, 1, 'COMMA', 2, 'POINT')}">4.99</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="totals">
+        <h4 th:text="'Total Coins: ' + ${totalCoins}">Total Coins: 0</h4>
+        <h4 th:text="'Total Price: $' + ${#numbers.formatDecimal(totalPrice, 1, 'COMMA', 2, 'POINT')}">Total Price: $0.00</h4>
+
+        <form th:action="@{/orders/checkout}" method="post" th:if="${!#lists.isEmpty(cart)}">
+            <button type="submit" class="btn btn-success">Checkout</button>
+        </form>
+
+        <a th:href="@{/shop}" class="btn btn-default" style="margin-top:10px;">Continue Shopping</a>
+    </div>
+
+</div>
+</body>
+</html>
