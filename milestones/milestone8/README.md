@@ -141,6 +141,24 @@ Ensures best practices for Spring Boot architecture.
 
 ---
 
+#### Updated Shop Page
+<img width="485" height="832" alt="image" src="https://github.com/user-attachments/assets/74396f11-3c7a-4143-8260-45f1108318d6" />
+**Description:**  
+The **Shop Page** displays products pulled directly from the MySQL database using the `ProductDAOImpl` DAO layer and rendered dynamically through **Thymeleaf**.  
+Users can view item names, prices, and coin values, then add quantities to their cart.  
+This page is **secured via Spring Security**, ensuring only authenticated users can access it.  
+Session-based cart management keeps track of user selections, and a real-time cart summary shows total coins and price at the bottom.
+
+---
+
+#### Purchase Completed Page
+<img width="575" height="904" alt="image" src="https://github.com/user-attachments/assets/ae024504-3e75-414a-87e4-baae3ec75ada" />  
+**Description:**  
+The **Purchase Completed (Success) Page** confirms that checkout has been successfully processed.  
+After the user submits their cart, the system clears the session cart data and redirects here to show a clean confirmation message.  
+The layout uses consistent Bootstrap styling and the shared `defaultTemplate.html` layout for a unified look across the app.  
+A “Back to Shop” button allows users to continue browsing or start a new purchase cycle.
+
 #### Preview/Screen cast of my Spring Boot web application
 https://www.loom.com/share/dd00d50b4eff40fb8f0a355ea608392b
 
