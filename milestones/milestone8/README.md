@@ -160,7 +160,7 @@ The layout uses consistent Bootstrap styling and the shared `defaultTemplate.htm
 A “Back to Shop” button allows users to continue browsing or start a new purchase cycle.
 
 #### Preview/Screen cast of my Spring Boot web application
-https://www.loom.com/share/dd00d50b4eff40fb8f0a355ea608392b
+[https://www.loom.com/share/dd00d50b4eff40fb8f0a355ea608392b](https://www.loom.com/share/1740ac6d53fe4982988794e2217cd317)
 
 ---
 
